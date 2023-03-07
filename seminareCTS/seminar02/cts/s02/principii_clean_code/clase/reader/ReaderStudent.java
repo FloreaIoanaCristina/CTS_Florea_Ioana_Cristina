@@ -22,18 +22,11 @@ public class ReaderStudent extends ReaderAplicant{
 			List<Aplicant> studenti = new ArrayList<Aplicant>();
 
 			while (input.hasNext()) {
-				String nume = input.next();
-				String prenume = (input.next()).toString();
-				int varsta = Integer.valueOf(input.nextInt());
-				int punctaj = Integer.valueOf(input.nextInt());
-				int nr = Integer.valueOf(input.nextInt());
-				String[] vect = new String[5];
-				for (int i = 0; i < nr; i++)
-					vect[i] = input.next();
+				Student student = new Student();
+				super.readAplicant(student, input);
 				int an_studii = input.nextInt();
 				String facultate = (input.next()).toString();
-				Student s = new Student(nume, prenume, varsta, punctaj, nr, vect, facultate, an_studii);
-				studenti.add(s);
+				studenti.add(student);
 			}
 			input.close();
 			return studenti;

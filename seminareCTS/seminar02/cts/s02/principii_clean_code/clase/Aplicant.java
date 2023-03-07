@@ -4,10 +4,18 @@ public abstract class Aplicant{
 	protected String nume;
 	protected String prenume;
 	protected int varsta;
-	protected int punctaj;
-	protected int nr_proiecte;
-	protected String[] denumireProiect;
-	
+	protected int punctajObtinut;
+	protected int nrProiecte;
+	protected String[] denumiriProiect;
+	private static int sumaFinantare;
+	protected static int pragAcceptare =80;
+
+	public static int getSumaFinantare() {
+		return sumaFinantare;
+	}
+	public static void setSumaFinantare(int sumaFinantare) {
+		Aplicant.sumaFinantare = sumaFinantare;
+	}
 	
 	public String getNume() {
 		return nume;
@@ -27,17 +35,16 @@ public abstract class Aplicant{
 	public void setVarsta(int varsta) {
 		this.varsta = varsta;
 	}
-	public void statut(){
-		if(punctaj>80)
-			System.out.println("Aplicantul "+nume+" "+prenume+" a fost acceptat.");
-		else
-			System.out.println("Aplicantul "+nume+" "+prenume+" nu a fost acceptat.");
+	public void afisareStatut(){
+		
+		System.out.println("Aplicantul "+nume+" "+prenume +  (punctajObtinut>pragAcceptare ? "": " nu ") + "a fost acceptat");
 		}
+	
 	public int getPunctaj() {
-		return punctaj;
+		return punctajObtinut;
 	}
 	public void setPunctaj(int punctaj) {
-		this.punctaj = punctaj;
+		this.punctajObtinut = punctaj;
 	}
 	
 	
@@ -47,20 +54,28 @@ public abstract class Aplicant{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Aplicant(String nume, String prenume, int varsta, int punctaj, int nr_proiecte, String[] denumireProiect) {
+	public Aplicant(String nume, String prenume, int varsta, int punctaj, int nrProiecte, String[] denumiriProiect) {
 		super();
 		this.nume = nume;
 		this.prenume = prenume;
 		this.varsta = varsta;
-		this.punctaj = punctaj;
-		this.nr_proiecte = nr_proiecte;
-		this.denumireProiect = denumireProiect;
+		this.punctajObtinut = punctaj;
+		this.nrProiecte = nrProiecte;
+		this.denumiriProiect = denumiriProiect;
 	}
-	public int getNr_proiecte() {
-		return nr_proiecte;
+	public int getnrProiecte() {
+		return nrProiecte;
 	}
-	public void setNr_proiecte(int nr_proiecte) {
-		this.nr_proiecte = nr_proiecte;
+	public void setDenumireProiect(int nr_proiecte, String[] denumireProiect) {
+		this.nrProiecte = nr_proiecte;
+		this.denumiriProiect = new String[nr_proiecte];
+		for(int i=0; i< this.nrProiecte; i++)
+		{
+			this.denumiriProiect[i] = denumireProiect[i];
+		}
 	}
-
+	public abstract void afisareSumaFinantare();
+	protected void afisareSumaFinantare(String tipAplicant, int sumaFinantare) {
+		System.out.println(tipAplicant +getNume()+" "+getPrenume()+" primeste"+ sumaFinantare +" Euro/zi in proiect.");
+	}
 }

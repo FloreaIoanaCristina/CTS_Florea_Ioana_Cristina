@@ -7,6 +7,7 @@ import cts.s02.principii_clean_code.clase.Angajat;
 import cts.s02.principii_clean_code.clase.Aplicant;
 import cts.s02.principii_clean_code.clase.reader.ReaderAngajat;
 
+
 public class Program {
 
 	public static void main(String[] args) {
@@ -14,8 +15,12 @@ public class Program {
 		List<Aplicant> listaAngajati;
 		try {
 			listaAngajati = readerAngajat.readAplicants("angajati.txt");
-			for(Aplicant angajat:listaAngajati)
+			Angajat.setSumaFinantare(100);
+			for(Aplicant angajat:listaAngajati) {
 				System.out.println(angajat.toString());
+				angajat.afisareSumaFinantare();
+				angajat.afisareStatut();
+			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -23,4 +28,3 @@ public class Program {
 	}
 
 }
-//comment
